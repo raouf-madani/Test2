@@ -1,7 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions} from 'react-native';
-import { Button } from 'react-native-paper';
-import Colors from "../constants/Colors";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const screen = Dimensions.get("window");

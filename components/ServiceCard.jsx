@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet,View,Text,Dimensions,Platform} from 'react-native';
-import {Button} from 'react-native-paper';
-import Colors from '../constants/Colors';
-import {Ionicons} from '@expo/vector-icons';
+import { StyleSheet,View,Text,Dimensions,Platform,Image,TouchableOpacity} from 'react-native';
+
 
 
 //responsivity (Dimensions get method)
@@ -10,292 +8,58 @@ const screen = Dimensions.get('window');
 
 const ServiceCard = props =>{
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /*Responsivity */
-  let containerStyle = styles.container;
-  let titleStyle = styles.title;
-  let typeMatchStyle = styles.typeMatch;
-  let editStyle = styles.edit;
-  let size = 25;
-  let algerianDinarStyle = styles.algerianDinar;
-  let labelBtnStyle = styles.labelBtn;
-  
-  if(screen.width < 350){
-    containerStyle = styles.containerSmall;
-    titleStyle = styles.titleSmall;
-    typeMatchStyle = styles.typeMatchSmall;
-    editStyle = styles.editSmall;
-    size = 22;
-    algerianDinarStyle = styles.algerianDinarSmall;
-    labelBtnStyle = styles.labelBtnSmall;
-}
-
-if(screen.height <= 800 && screen.height >=700){
-    containerStyle = styles.containerTall;
-    titleStyle = styles.titleTall;
-    typeMatchStyle = styles.typeMatchTall;
-    editStyle = styles.editTall;
-    size = 30;
-    algerianDinarStyle = styles.algerianDinarTall;
-    labelBtnStyle = styles.labelBtnTall;
-}
-
-if(screen.height > 800){
-   containerStyle = styles.containerBig;
-   titleStyle = styles.titleBig;
-   typeMatchStyle = styles.typeMatchBig;
-   editStyle = styles.editBig;
-   size = 36;
-   algerianDinarStyle = styles.algerianDinarBig;
-   labelBtnStyle = styles.labelBtnBig;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return(
      
-    <View style={containerStyle}>
-       
-        <View style={styles.titleContainer}>
-         <Text style={titleStyle}>SERVICE {props.serviceNumber}</Text>
+        <View style={styles.thirdCard}>
+        <View style={{height:'90%',width:'95%',borderRadius:10,elevation:2,shadowColor: 'black',shadowOpacity: 0.96,shadowOffset: {width: 0, height:2},shadowRadius: 10}}>
+             <View style={{width:'100%',height:'20%',flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5}}>
+               <Text style={{fontFamily:'poppins-bold',fontSize:22,color:'black'}}>Mes Services</Text>  
+               <View style={{width:80,height:80,alignItems:'center',justifyContent:'center',borderRadius:40,position:'relative',top:-10,backgroundColor:props.sexe ==='Femme' ?'rgb(254,178,199)' : '#87d4f2'}}>
+                 <Text style={{fontFamily:'poppins-bold',fontSize:20,color:'white'}}>{props.place}</Text>
+               </View>
+             </View>
+             <View style={{width:'100%',height:'65%',justifyContent:'center',alignItems:'center',paddingHorizontal:5}}>
+                 <View style={{width:'90%',height:'33%',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <Image  source={props.sexe === 'Homme' ? require('../assets/images/barbershop.png'): require('../assets/images/woman.png')} style={{width:32,height:32}}/>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:17,color:'black'}}>{props.typeOne}</Text>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:15,color:'gray'}}>{props.priceOne+' DA'}</Text>
+                 </View>
+                 <View  style={{width:'90%',height:'33%',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <Image  source={props.sexe==='Homme' ? require('../assets/images/beard.png') : require('../assets/images/bride.png')} style={{width:32,height:32}}/>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:17,color:'black'}}>{props.typeTwo}</Text>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:15,color:'gray'}}>{props.priceTwo+' DA'}</Text>  
+                 </View>
+                 <View  style={{width:'90%',height:'33%',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <Image  source={require('../assets/images/dryer.png')} style={{width:32,height:32}}/>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:17,color:'black'}}>{props.typeThree}</Text>
+                    <Text style={{fontFamily:'poppins-bold',fontSize:15,color:'gray'}}>{props.priceThree+' DA'}</Text>
+                 </View>
+             </View>
+             <View style={{width:'100%',height:'15%',alignItems:'center',overflow:'visible',borderBottomEndRadius:10,borderBottomStartRadius:10}}>
+                   <View style={{width:'90%',height:'100%',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                       <TouchableOpacity style={{borderBottomColor:'grey',borderBottomWidth:1}}>
+                          <Text style={{fontFamily:'poppins',fontSize:12,color:'gray'}}>Modifier les additions</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity style={{borderBottomColor:'grey',borderBottomWidth:1}}>
+                          <Text style={{fontFamily:'poppins',fontSize:12,color:'gray'}}>Modifier les horaires</Text>
+                       </TouchableOpacity>
+                   </View>
+             </View>
         </View>
-        
-        <View style={styles.infoContainer}>
-            <View style={styles.infoMatchContainerLeft}>
-                <View style={styles.typeTimeMatchContainer}>
-                    <Ionicons name='ios-person' size={size} color={Colors.primary}/>
-                    <Text style={typeMatchStyle}> {props.typeMatch} </Text>
-                    <Ionicons name='ios-person' size={size} color={Colors.primary}/>
-                </View>
-                <View style={styles.typeTimeMatchContainer}>
-                    <Ionicons name={Platform.OS === 'android' ? 'md-hourglass' : 'ios-hourglass'} size={size} color={Colors.primary}/>
-                    <Text style={typeMatchStyle}> {props.durationMatch} heure</Text>
-                </View>
-            </View>
-            <View style={styles.infoMatchDateContainerRight}>
-                <View style={styles.typeTimeMatchContainer}> 
-                    <Ionicons name={Platform.OS === 'android' ? 'md-calendar' : 'ios-calendar'} size={size} color={Colors.primary}/>
-                    <Text style={editStyle}> modifier </Text>
-                </View>
-                <View style={styles.typeTimeMatchContainer}>
-                    <Ionicons name={Platform.OS === 'android' ? 'md-time' : 'ios-time'} size={size} color={Colors.primary}/>
-                    <Text style={editStyle}> modifier </Text>
-                </View>
-            </View>
-        </View>
-
-        <View style={styles.tarifContainer}>
-            <Text style={titleStyle}>{props.price} <Text style={algerianDinarStyle}>DA/Equipe</Text></Text>
-        </View>
-
-        <View style={styles.buttonsContainer}>
-            <View style={styles.buttonWidth}>
-            <Button
-            theme={{colors: {primary:Colors.primary}}} 
-            mode="contained"
-            labelStyle={labelBtnStyle}
-            contentStyle={{width:'100%'}}
-            style={{borderColor:Colors.primary}}
-            dark={true}
-            >Supprimer
-        </Button>
-            </View>
-        </View>
-
-        
-    </View>
+     </View>
     );    
 };
 
 
 const styles= StyleSheet.create({
    
- container:{
-    borderRadius:10,
-    margin:20,
-    height:300,
-    backgroundColor:"rgba(1,2,3,0.6)"
- },
- containerSmall:{
-    borderRadius:10,
-    margin:20,
-    height:280,
-    backgroundColor:"rgba(1,2,3,0.6)"
- },
- containerTall:{
-    borderRadius:10,
-    margin:20,
-    height:350,
-    backgroundColor:"rgba(1,2,3,0.6)"
- },
- containerBig:{
-    borderRadius:10,
-    margin:20,
-    height:500,
-    backgroundColor:"rgba(1,2,3,0.6)"
- },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- titleContainer:{
-    width:'100%',
-    height:'25%',
-    alignItems:'center',
-    justifyContent:'center'
- },
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- title:{
-     fontFamily:'poppins-bold',
-     fontSize:30,
-     color:Colors.primary
- },
- titleSmall:{
-    fontFamily:'poppins-bold',
-    fontSize:26,
-    color:Colors.primary
-},
-titleTall:{
-    fontFamily:'poppins-bold',
-    fontSize:32,
-    color:Colors.primary
-},
-titleBig:{
-    fontFamily:'poppins-bold',
-    fontSize:40,
-    color:Colors.primary
-},
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- infoContainer:{
-    width:'100%',
-    height:'35%',
-    justifyContent: 'space-between',
-    flexDirection:'row'
- },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- typeMatch:{
-    fontSize:18,
-    fontFamily:'poppins',
-    color:'white',
- },
- typeMatchSmall:{
-    fontSize:15,
-    fontFamily:'poppins',
-    color:'white',
- },
- typeMatchTall:{
-    fontSize:22,
-    fontFamily:'poppins',
-    color:'white',
- },
- typeMatchBig:{
-    fontSize:26,
-    fontFamily:'poppins',
-    color:'white',
- },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- edit:{
-    fontSize:18,
-    fontFamily:'poppins',
-    color:'white',
-    borderBottomColor:'white',
-    borderBottomWidth:1
- },
- editSmall:{
-    fontSize:16,
-    fontFamily:'poppins',
-    color:'white',
-    borderBottomColor:'white',
-    borderBottomWidth:1
- },
- editTall:{
-    fontSize:18,
-    fontFamily:'poppins',
-    color:'white',
-    borderBottomColor:'white',
-    borderBottomWidth:1
- },
- editBig:{
-    fontSize:26,
-    fontFamily:'poppins',
-    color:'white',
-    borderBottomColor:'white',
-    borderBottomWidth:1,
-    alignSelf:'center'
- },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- infoMatchContainerLeft:{
-     width:'50%',
-     padding:5,
-     alignItems:'center'
- },
- infoMatchDateContainerRight:{
-     width:'50%',
-     padding:5,
-     alignItems:'center'
- },
- typeTimeMatchContainer:{
-    flexDirection:'row',
-    paddingVertical:10
- },
- tarifContainer:{
-     paddingVertical:10,
-     alignItems:'center',
-     justifyContent:'center',
-     width:'100%',
-     height:'20%'
- },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- algerianDinar:{
-     fontSize:14,
-     fontFamily:'poppins',
-     color:'white'
- },
- algerianDinarSmall:{
-    fontSize:13,
-    fontFamily:'poppins',
-    color:'white'
-},
-algerianDinarTall:{
-    fontSize:16,
-    fontFamily:'poppins',
-    color:'white'
-},
-algerianDinarBig:{
-    fontSize:20,
-    fontFamily:'poppins',
-    color:'white'
-},
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- buttonsContainer:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    height:'20%',
-    paddingHorizontal: 20,
-    
- },
- buttonWidth:{
-    width:'60%',
-    borderRadius:20,
-    overflow:'hidden'
- },
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- labelBtn:{
-    fontSize:15,
-    fontFamily:'poppins', 
-    color: 'white'
-   },
- labelBtnSmall:{
-    fontSize:13,
-    fontFamily:'poppins', 
-    color: 'white'
-},
- labelBtnTall:{
-    fontSize:16,
-    fontFamily:'poppins', 
-    color: 'white'
-},
- labelBtnBig:{
-    fontSize:22,
-    fontFamily:'poppins', 
-    color: 'white'
-}
+    thirdCard:{
+      width:'95%',
+      height:'50%',
+      alignItems:'center',
+      justifyContent:'center'
+    }
 });
 
 export default ServiceCard;

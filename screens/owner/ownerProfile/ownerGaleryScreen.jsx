@@ -1,228 +1,124 @@
 import React,{useState} from 'react';
-import { StyleSheet,View,ImageBackground,Text,TouchableHighlight,Image,Dimensions} from 'react-native';
-import {HeaderButtons,Item} from "react-navigation-header-buttons";
-import HeaderButton from "../../../components/HeaderButton";
-import Colors from '../../../constants/Colors';
-import {Ionicons} from "@expo/vector-icons";
+import { StyleSheet,View,Button,Text,TouchableOpacity,Image,Dimensions,ScrollView} from 'react-native';
+import {MaterialIcons,MaterialCommunityIcons} from "@expo/vector-icons";
 
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 
 //responsivity (Dimensions get method)
 const screen = Dimensions.get('window');
 
 const OwnerGaleryScreen = props =>{
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /*Responsivity */
-  let textStyle = styles.text;
-  let size = 36;
-
-  if(screen.width < 350){
-    size = 34;
-  }
-
-  if(screen.height <= 900 && screen.height >=700){
-    textStyle = styles.textTall;
-    size = 42;
-  }
-
-  if(screen.height > 900){
-    textStyle = styles.textBig;
-    size = 46;
-  }
-
-  
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  const [pickedImage,setPickedImage]= useState();
-  const [pickedImage2,setPickedImage2]= useState();
-  const [pickedImage3,setPickedImage3]= useState();
-  const [pickedImage4,setPickedImage4]= useState();
-
-  //Permissions 
-  const verifyPermissions= async ()=>{
-    const result= await Permissions.askAsync(Permissions.CAMERA,Permissions.CAMERA_ROLL);
-    if(result.status !== 'granted'){
-        Alert.alert('Permissions insuffisantes!',
-        'Vous devez autoriser votre caméra pour utiliser cette application.',
-        [{text:"D'accord"}]);
-        return false;
-    }
-    return true;
-  };
-
-  //Image 1 
-  const takeImageHandler = async ()=>{
-    const hasPermissions = await verifyPermissions();
-    if(!hasPermissions){
-        return;
-    }
-    const image = await ImagePicker.launchCameraAsync({
-        allowsEditing:true,
-        aspect:[60,60],
-        quality:0.7
-    });
-    
-    setPickedImage(image.uri);
- };
-
- //Image 2 
- const takeImageHandler2 = async ()=>{
-  const hasPermissions = await verifyPermissions();
-  if(!hasPermissions){
-      return;
-  }
-  const image = await ImagePicker.launchCameraAsync({
-      allowsEditing:true,
-      aspect:[60,60],
-      quality:0.7
-  });
-  
-  setPickedImage2(image.uri);
-};
-
-//Image 3
-const takeImageHandler3 = async ()=>{
-  const hasPermissions = await verifyPermissions();
-  if(!hasPermissions){
-      return;
-  }
-  const image = await ImagePicker.launchCameraAsync({
-      allowsEditing:true,
-      aspect:[60,60],
-      quality:0.7
-  });
-  
-  setPickedImage3(image.uri);
-};
-
-//Image 4
-const takeImageHandler4 = async ()=>{
-  const hasPermissions = await verifyPermissions();
-  if(!hasPermissions){
-      return;
-  }
-  const image = await ImagePicker.launchCameraAsync({
-      allowsEditing:true,
-      aspect:[60,60],
-      quality:0.7
-  });
-  
-  setPickedImage4(image.uri);
-};
-
-
+  const data=[{id:'1',fullname:'Angelina .J',imagePth:require('../../../assets/images/angelina.jpg'),phone:'0659853214',sexe:'Femme',email:'maxi@gmail.com',experience:5,imagePth2:require('../../../assets/images/angelina.png')},
+             ]; 
     return(
+   
     <View style={styles.container}>
-     <ImageBackground source = {require("../../../assets/images/android.jpg")}  style={styles.backgroundImage}>
-      <View style={styles.card}>
-        <View style={styles.gridContainer}>
-          <View style={styles.grid}>
-            {!pickedImage ? (<View style={styles.wrapper}>
-              <TouchableHighlight style={styles.iconContainer} onPress={takeImageHandler}>
-                <Ionicons title = "add" 
-                name ='ios-camera'
-                color={Colors.background} size={size} />
-              </TouchableHighlight>
-              <Text style={textStyle}>Photo 1</Text>
-            </View>)
-             : (<View style={styles.wrapper}>
-               <Image style={styles.image} source={{uri:pickedImage}} />
-               <TouchableHighlight style={styles.iconContainer} onPress={()=>setPickedImage(false)}>
-                  <Ionicons title = "add" 
-                  name ='ios-remove'
-                  color='red' size={size} />
-               </TouchableHighlight>
-               </View>)}
+      <View style={styles.firstCard}>
+         <View style={styles.firstFirstCard}>
+            <TouchableOpacity>
+             <MaterialIcons title = "back" name ='arrow-back' color='white' size={30} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style={{fontFamily:'poppins-bold',fontSize:30,color:'white',position:'relative',top:15}}>4</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.grid}>
-            {!pickedImage2 ? 
-            ( <View style={styles.wrapper}>
-                <TouchableHighlight style={styles.iconContainer} onPress={takeImageHandler2}>
-                  <Ionicons title = "remove" 
-                  name = 'ios-camera'
-                  color={Colors.background} size={size} />
-                </TouchableHighlight>
-                <Text style={textStyle}>Photo 2</Text>
-              </View>) :
-             ( <View style={styles.wrapper}>
-                <Image style={styles.image} source={{uri:pickedImage2}} />
-                <TouchableHighlight style={styles.iconContainer} onPress={()=>setPickedImage2(false)}>
-                  <Ionicons title = "remove" 
-                  name ='ios-remove'
-                  color='red' size={size} />
-               </TouchableHighlight>
-               </View>)}
+          <View style={styles.secondFirstCard}>
+             <Text style={{fontFamily:'poppins-bold',fontSize:20,color:'white'}}>TEMOINS</Text>
+             <View style={{width:60,height:60,borderRadius:20}}>
+                  <Image source={data[0].imagePth2} style={{width:'100%',height:'100%',borderRadius:40}} />
+              </View>
           </View>
-        </View>
-        <View style={styles.gridContainer}>
-          <View style={styles.grid}>
-            {!pickedImage3 ? (<View style={styles.wrapper}>
-              <TouchableHighlight style={styles.iconContainer} onPress={takeImageHandler3}>
-                <Ionicons title = "add" 
-                name ='ios-camera'
-                color={Colors.background} size={size} />
-              </TouchableHighlight>
-              <Text style={textStyle}>Photo 3</Text>
-            </View>) : 
-            (<View style={styles.wrapper}>
-               <Image style={styles.image} source={{uri:pickedImage3}} />
-               <TouchableHighlight style={iconContainerStyle} onPress={()=>setPickedImage3(false)}>
-                  <Ionicons title = "remove" 
-                  name ='ios-remove'
-                  color='red' size={size} />
-               </TouchableHighlight>
-               </View>)}
+          <View style={styles.thirdFirstCard}>
+             <View style={{borderRadius:20,width:'40%',overflow:'hidden'}}>
+               <Button title='POPULAIRE' color='rgb(254,154,205)' style={{overflow:'hidden'}}/>
+             </View>
+             <View style={{borderRadius:20,width:'40%',borderColor:'white',overflow:'hidden'}}>
+              <Button title='NOUVEAUX' color='rgb(224,178,199)' />
+             </View>
           </View>
-          <View style={styles.grid}>
-            {!pickedImage4 ? (<View style={styles.wrapper}>
-              <TouchableHighlight style={styles.iconContainer} onPress={takeImageHandler4}>
-                <Ionicons title = "add" 
-                name ='ios-camera'
-                color={Colors.background} size={size} />
-              </TouchableHighlight>
-              <Text style={textStyle}>Photo 4</Text>
-            </View>) : 
-            (<View style={styles.wrapper}>
-                <Image style={styles.image} source={{uri:pickedImage4}} />
-                <TouchableHighlight style={styles.iconContainer} onPress={()=>setPickedImage4(false)}>
-                  <Ionicons title = "remove" 
-                  name ='ios-remove'
-                  color='red' size={size} />
-               </TouchableHighlight>
-               </View>)}
+          <View style={styles.forthFirstCard}>
+              <View style={{width:'15%'}}>
+                <View style={{width:60,height:70,position:'relative',left:-5}}>
+                    <Image source={require('../../../assets/images/chris.jpg')} style={{width:'100%',height:'100%',borderRadius:5}} />
+                </View> 
+              </View>
+              <View style={{width:'60%',justifyContent:'flex-start',alignItems:'flex-start'}}>
+                <Text style={{fontFamily:'poppins-bold',color:'black',fontSize:20}}>Chris .K</Text>
+                <Text style={{fontFamily:'poppins',color:'grey',fontSize:13}}>Vous etes doué Madame, Merci!</Text>
+              </View>
+              <View style={{width:'15%'}}>
+                <MaterialCommunityIcons title = "like" name ='cards-heart' color={data[0].sexe === 'Femme' ? 'rgb(254,178,199)' : '#87d4f2'} size={30} />
+              </View>
           </View>
-        </View>
-      </View>
-     </ImageBackground>
-    </View>
+          <View style={styles.forthFirstCard}>
+              <View style={{width:'15%'}}>
+                <View style={{width:60,height:70,position:'relative',left:-5}}>
+                    <Image source={require('../../../assets/images/fatima.jpg')} style={{width:'100%',height:'100%',borderRadius:5}} />
+                </View> 
+              </View>
+              <View style={{width:'60%',justifyContent:'flex-start',alignItems:'flex-start'}}>
+                <Text style={{fontFamily:'poppins-bold',color:'black',fontSize:20}}>Fatima .Z</Text>
+                <Text style={{fontFamily:'poppins',color:'grey',fontSize:13}}>Vous etes géniale, Merci!!!</Text>
+              </View>
+              <View style={{width:'15%'}}>
+                <MaterialCommunityIcons title = "dislike" name ='heart-outline' color={data[0].sexe === 'Femme' ? 'rgb(254,178,199)' : '#87d4f2'} size={30} />
+              </View>
+          </View>
+          <View style={styles.forthFirstCard}>
+              <View style={{width:'15%'}}>
+                <View style={{width:60,height:70,position:'relative',left:-5}}>
+                    <Image source={require('../../../assets/images/hareth.jpg')} style={{width:'100%',height:'100%',borderRadius:5}} />
+                </View> 
+              </View>
+              <View style={{width:'60%',justifyContent:'flex-start',alignItems:'flex-start'}}>
+                <Text style={{fontFamily:'poppins-bold',color:'black',fontSize:20}}>Hareth .S</Text>
+                <Text style={{fontFamily:'poppins',color:'grey',fontSize:13}}>Je vous note 5/5, Merci!!!</Text>
+              </View>
+              <View style={{width:'15%'}}>
+                <MaterialCommunityIcons title = "dislike" name ='heart' color={data[0].sexe === 'Femme' ? 'rgb(254,178,199)' : '#87d4f2'} size={30} />
+              </View>
+          </View>
+          <View style={styles.forthFirstCard}>
+              <View style={{width:'15%'}}>
+                <View style={{width:60,height:70,position:'relative',left:-5}}>
+                    <Image source={require('../../../assets/images/walid.jpg')} style={{width:'100%',height:'100%',borderRadius:5}} />
+                </View> 
+              </View>
+              <View style={{width:'60%',justifyContent:'flex-start',alignItems:'flex-start'}}>
+                <Text style={{fontFamily:'poppins-bold',color:'black',fontSize:20}}>Raouf .M</Text>
+                <Text style={{fontFamily:'poppins',color:'grey',fontSize:13}}>J'ai trop aimé ma nouvelle coiffure, Merci!</Text>
+              </View>
+              <View style={{width:'15%'}}>
+                <MaterialCommunityIcons title = "dislike" name ='heart' color={data[0].sexe === 'Femme' ? 'rgb(254,178,199)' : '#87d4f2'} size={30} />
+              </View>
+          </View>
 
+      </View>
+    </View>
+    
      );    
 };
 
 OwnerGaleryScreen.navigationOptions= navData => {
     
      return {
-         headerRight : ()=>  
-               (<HeaderButtons HeaderButtonComponent = {HeaderButton}> 
-                 <Item title = "save" 
-                   iconName = {Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'}
-                   color={Platform.OS === 'android' ? 'white' : Colors.background}
-                 />
-               </HeaderButtons>
-               
-             ),
-             headerTitle:'Ma Galerie',
-             headerTitleStyle:{
-              fontFamily:'poppins',
-              color:Platform.OS === 'android' ? 'white' : Colors.background
-            },
-             headerStyle:{
-              backgroundColor:Platform.OS === 'android' ? Colors.background : 'white'
-            },
-            headerBackTitle: " ",
-            headerTintColor:Platform.OS === 'android' ? 'white' : Colors.background
+      headerTransparent : true ,
+      headerStyle:{
+          backgroundColor: 'white'
+      },
+      headerBackTitle : " ",
+      headerTitle: () => (
+        <Image 
+        resizeMode="cover"
+        style={{
+          width:150,
+          height:40,
+          resizeMode:'contain',
+          alignSelf: 'center'}}
+        
+        />
+      ),
+      headerLeft:()=>null
      
      };
  
@@ -232,74 +128,63 @@ OwnerGaleryScreen.navigationOptions= navData => {
 const styles= StyleSheet.create({
    container:{
     flex:1,
-    backgroundColor:'white'
-   },
-   backgroundImage : {
-    flex : 1,
-    resizeMode: 'cover',
-    justifyContent:'center',
+    backgroundColor:'white',
+    width:'100%',
+    height:'100%',
     alignItems:'center'
-  },
-  card:{
-    height:'95%',
+   },
+   firstCard:{
     width:'95%',
-    backgroundColor:Colors.background,
-    borderRadius:10,
-    justifyContent:'center',
-    alignItems:'center'
+    height:'50%',
+    borderTopLeftRadius:30,
+    borderTopRightRadius:30,
+    shadowColor: 'black',
+    shadowOpacity: 0.96,
+    shadowOffset: {width: 0, height:2},
+    shadowRadius: 10,
+    elevation: 5,
+    backgroundColor:'rgb(254,178,199)',
+    alignItems:'center',
    },
-   gridContainer:{
-     flexDirection:'row',
-      height:'50%',
-     width:'90%',
-     justifyContent:'space-around',
-     alignItems:'center'
-   },
-   grid:{
-     backgroundColor:'white',
-     width:'45%',
-     height:'90%',
-     borderRadius:10,
-     borderWidth:1,
-     margin:5
-   },
-   wrapper:{
-     width:'100%',
-     height:'100%',
-     justifyContent:'flex-start',
-     alignItems:'flex-end'
-   },
-   iconContainer:{
-    height:40,
-    width:50,
-    borderRadius:50/2,
-    backgroundColor:'transparent',
-    justifyContent:'center',
-    alignItems:'center'
-   }, 
-   image:{
-     width:'100%',
-     height:'100%',
-     position:'absolute'
-   },
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-   text:{
-     alignSelf:'center',
-     position:'relative',
-     top:screen.height * 0.1
-   },
-  textTall:{
-    alignSelf:'center',
-    position:'relative',
-    top:screen.height * 0.1,
-    fontSize:20
+    firstFirstCard:{
+    width:'95%',
+    height:'20%',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'flex-end'
   },
-  textBig:{
-    alignSelf:'center',
+  secondFirstCard:{
+    width:'95%',
+    height:'25%',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'flex-end'
+  },
+  thirdFirstCard:{
+    width:'95%',
+    height:'25%',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  forthFirstCard:{
+    width:'95%',
+    height:'35%',
+    alignItems:'center',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
     position:'relative',
-    top:screen.height * 0.15,
-    fontSize:22
-  }
+    top:40, 
+    shadowColor: 'black',
+    shadowOpacity: 0.96,
+    shadowOffset: {width: 0, height:2},
+    shadowRadius: 10,
+    elevation: 5,
+    borderRadius:10,
+    marginVertical:5,
+    backgroundColor:'white'
+  },
 });
 
 export default OwnerGaleryScreen;

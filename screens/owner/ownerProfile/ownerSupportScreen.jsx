@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,View,ImageBackground,Image,Text,Linking,Dimensions} from 'react-native';
+import { StyleSheet,View,Image,Text,Linking,Dimensions} from 'react-native';
 import {HeaderButtons,Item} from "react-navigation-header-buttons";
 import HeaderButton from "../../../components/HeaderButton";
 import Colors from '../../../constants/Colors';
@@ -10,61 +10,34 @@ const screen = Dimensions.get('window');
 
 const OwnerSupportScreen = props =>{
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /*Responsivity */
-  let cardStyle= styles.card;
-  let titleStyle = styles.title;
-  let infoContainerStyle = styles.infoContainer;
-  let infoStyle = styles.info;
-  let iconStyle = styles.icon;
-
-  if(screen.width < 350){
-    cardStyle = styles.cardSmall;
-    titleStyle = styles.titleSmall;
-    infoStyle = styles.infoSmall;
-    iconStyle = styles.iconSmall;
-  }
-
-  if(screen.height <= 800 && screen.height >=700){
-    infoContainerStyle = styles.infoContainerTall;
-    infoStyle = styles.infoTall;
-    iconStyle = styles.iconTall;
-  }
-
-  if(screen.height > 800){
-    cardStyle = styles.cardBig;
-    titleStyle = styles.titleBig;
-    infoContainerStyle = styles.infoContainerBig;
-    infoStyle = styles.infoBig;
-    iconStyle = styles.iconBig;
-  }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return(
-    <View style={styles.container}>
-        <View style={cardStyle}>
-            <ImageBackground source={require('../../../assets/images/support.png')} style={styles.bigBackgroundImage} blurRadius={0}>
-                
-            </ImageBackground>
+      <View style={styles.container}>
+        <View style={{height:'20%'}}>
+          <Image source={require('../../../assets/images/wave6.png')} style={{width:500,height:'100%'}}/>
         </View>
-        <View style={styles.titleContainer}>
-                 <Text style={titleStyle}>Un Problème Téchnique ?</Text>
+        <View style={{height:'40%',alignItems:'center',justifyContent:'center'}}>
+          <Image source={require('../../../assets/images/tahfifaLogo.png')} style={{resizeMode:'cover', width:280,height:116}}/>
+          <View style={{alignItems:'center'}}>
+            <Text style={{fontFamily:'poppins-bold',paddingBottom:5,fontSize:17}}>Un problème technique ?</Text>
+            <Text style={{fontFamily:'poppins'}}>Vous pouvez contacter notre équipe</Text>
+            <Text style={{fontFamily:'poppins'}}>24/7 sur les plateformes au-dessous.</Text>
+          </View>
         </View>
-        <View style={styles.card2}>
-            <View style={infoContainerStyle}>
-              <Image style={iconStyle} source={require('../../../assets/images/whatsapp.png')} />
-              <Text  style={infoStyle}>06532458765</Text>
-            </View>
-            <View style={infoContainerStyle}>
-              <Image style={iconStyle}  source={require('../../../assets/images/inbox.png')} />
-              <Text style={infoStyle}>contact@partiyadz.com</Text>
-            </View>
-            <View style={infoContainerStyle}>
-              <Image style={iconStyle}  source={require('../../../assets/images/domain.png')} />
-              <Text style={infoStyle}>partiyadz.com</Text>
-            </View>
+        <View style={{height:'15%',flexDirection:'row',justifyContent:'center',paddingVertical:15}}>
+          <Image source={require('../../../assets/images/facebook.png')} style={{width:32,height:32,marginHorizontal:10}}/>
+          <Image source={require('../../../assets/images/whatsapp.png')} style={{width:32,height:32,marginHorizontal:10}}/>
+          <Image source={require('../../../assets/images/instagram.png')} style={{width:32,height:32,marginHorizontal:10}}/>
+          <Image source={require('../../../assets/images/linkedin.png')} style={{width:32,height:32,marginHorizontal:10}}/>  
         </View>
-    </View>
+        <View style={{height:'5%',alignItems:'center'}}>
+            <Text style={{fontFamily:'poppins'}}>ayoungleader.com</Text>
+            <Text style={{fontFamily:'poppins'}}>ayoungleader.com/tahfifa</Text>
+        </View>
+        <View style={{height:'20%'}}>
+         <Image source={require('../../../assets/images/wave3.png')} style={{width:500,height:'100%'}}/>
+        </View>
+      </View>
 
      );    
 };
@@ -76,7 +49,7 @@ OwnerSupportScreen.navigationOptions= navData => {
                (<HeaderButtons HeaderButtonComponent = {HeaderButton}> 
                  <Item title = "callSupport" 
                    iconName = {Platform.OS === 'android' ? 'md-call' : 'ios-call'}
-                   color= {Platform.OS === 'android' ? 'white' : Colors.background}
+                   color= '#87d4f2'
                    onPress={()=>{
                      let phoneNumber = '';
      
@@ -95,12 +68,12 @@ OwnerSupportScreen.navigationOptions= navData => {
              headerTitle:'Support',
              headerTitleStyle:{
                fontFamily:'poppins',
-               color:Platform.OS === 'android' ? 'white' : Colors.background
+               color:Platform.OS === 'android' ? '#87d4f2' : Colors.background
              },
              headerStyle:{
-                 backgroundColor:Platform.OS === 'android' ? Colors.background : 'white'
+                 backgroundColor:Platform.OS === 'android' ? 'white' : '#87d4f2'
              },
-             headerTintColor:Platform.OS === 'android' ? 'white' : Colors.background,
+             headerTintColor:Platform.OS === 'android' ? '#87d4f2' : '#87d4f2',
              headerBackTitle : " "
      
      };
@@ -112,110 +85,10 @@ const styles= StyleSheet.create({
    container:{
     flex:1,
     backgroundColor:'white',
-    justifyContent:'flex-start'
+    justifyContent:'flex-start',
+    width:'100%'
    },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   card:{
-    margin:15,
-    height:'55%',
-   },
-   cardSmall:{
-    margin:15,
-    height:'50%',
-   },
-   cardBig:{
-    margin:15,
-    height:'60%',
-   },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   bigBackgroundImage:{
-    flex:1,
-    justifyContent:'flex-end'
-   },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-   titleContainer:{
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:-35,
-    marginHorizontal:5
-   },
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-  title:{
-    fontFamily:'poppins-bold',
-    color:Colors.background,
-    fontSize:24
-  },
-  titleSmall:{
-    fontFamily:'poppins-bold',
-    color:Colors.background,
-    fontSize:21
-  },
-  titleBig:{
-    fontFamily:'poppins-bold',
-    color:Colors.background,
-    fontSize:34
-  },
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-  card2:{
-    justifyContent:'center',
-    alignItems:'center',
-    paddingTop: 20
-  },
- 
-  infoContainer:{
-      flexDirection:'row',
-      paddingVertical:5
-  },
-  infoContainerTall:{
-    flexDirection:'row',
-    paddingVertical:8
-  },
-  infoContainerBig:{
-    flexDirection:'row',
-    paddingVertical:10
-  },
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-  info:{
-      fontSize:15,
-      fontFamily:'poppins',
-      paddingLeft:10,
-      color:Colors.background
-  },
-  infoSmall:{
-    fontSize:13,
-    fontFamily:'poppins',
-    paddingLeft:10,
-    color:Colors.background
-  },
-  infoTall:{
-    fontSize:17,
-    fontFamily:'poppins',
-    paddingLeft:10,
-    color:Colors.background
-  },
-  infoBig:{
-    fontSize:18,
-    fontFamily:'poppins',
-    paddingLeft:10,
-    color:Colors.background
-  },
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-  icon:{
-    height:24,
-    width:24
-  },
-  iconSmall:{
-    height:22,
-    width:22
-    },
-  iconTall:{
-    height:30,
-    width:30
-  },
-  iconBig:{
-    height:32,
-    width:32
-}
+
 });
 
 export default OwnerSupportScreen;
