@@ -55,12 +55,12 @@ let badgeStyle = styles.badgeStyle;
              <View style = {styles.infosContainer}>
                  <Text 
                  style = {stadiumNameStyle}>
-                 FootFive
+                 {props.stade}
                  </Text>
 
                  <View style={styles.matchContainer}>
                  <Text style = {smallTextStyle}>
-                 {props.time} /
+                 {props.time} 
                  </Text>
                  <Text style = {smallTextStyle}> 
                  {props.stadium}
@@ -104,9 +104,10 @@ const styles= StyleSheet.create({
         alignSelf : "center",
         flexDirection : "row",
         justifyContent : "space-between",
-        backgroundColor : "rgba(80, 80, 80,0.7)",
+        backgroundColor : "white",
         borderRadius : 15,
-        marginVertical : 10
+        marginVertical : 10,
+        borderWidth : 1
     },
 
     cardContainerBig : {
@@ -122,9 +123,9 @@ const styles= StyleSheet.create({
  ///////////////////////////////////////////////////////////////   
     left : {
       flexDirection :"row",
-      width : "50%",
-      justifyContent : "space-around",
-
+      width : "80%",
+      justifyContent : "flex-start",
+      
     
     },
 /////////////////////////////////////////////////////////////////
@@ -134,7 +135,9 @@ const styles= StyleSheet.create({
       justifyContent : "center",
       height : "90%",
       overflow : "hidden",
-      alignSelf : "center"
+      alignSelf : "center",
+      marginLeft : 5,
+      marginRight : 15
     },
     avatarContainerBig : {
       flexDirection : "row",
@@ -211,7 +214,7 @@ const styles= StyleSheet.create({
       
         fontFamily : "poppins-bold",
         fontSize : 15,
-        color : "white"
+        color : "black"
         
     },
     bigTextBig : {
@@ -225,7 +228,7 @@ const styles= StyleSheet.create({
     smallText : {
       fontFamily : "poppins",
       fontSize : 13,
-      color : "#e9e5dd"
+      color : "black"
     
     },
     smallTextBig : {
@@ -245,7 +248,7 @@ const styles= StyleSheet.create({
        stadiumName : {
         fontFamily : "poppins-bold",
         fontSize : 17,
-        color : "white"
+        color : "black"
         },
         stadiumNameBig : {
           fontFamily : "poppins-bold",

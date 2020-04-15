@@ -28,6 +28,7 @@ import stadiumBookingScreen from "../screens/player/playerBooking/stadiumBooking
 import PlayerExpiredBookingsScreen from '../screens/player/playerBooking/playerExpiredBookingsScreen';
 import PlayerProfileScreen from "../screens/player/playerProfile/playerProfileScreen";
 
+import findBarber from "../screens/player/playerBooking/findBarber";
 
 ///////////////////////////////////////////////////////////////////
 //Tab Navigator For Player Bookings Screen
@@ -36,7 +37,7 @@ const tabConfig = {
           screen : PlayerBookingsScreen ,
           navigationOptions : {
             tabBarLabel : "Mes Réservations" ,
-            tabBarColor : Colors.secondary ,
+            tabBarColor : Colors.background ,
             tabBarIcon : () => {
               return( <Ionicons name = "ios-calendar" 
               size = {22} color ="white"/>);
@@ -50,7 +51,7 @@ const tabConfig = {
           navigationOptions : {
             
             tabBarLabel : "Expirées" ,
-            tabBarColor : "rgba(198, 34, 37, 1)" ,
+            tabBarColor : "#da3a30" ,
             tabBarIcon : () => {
               return( <MaterialIcons name = "history" 
               size = {22} color ="white"/>);
@@ -72,7 +73,7 @@ const PlayerBookingsTab = createMaterialBottomTabNavigator(tabConfig,
     headerBackTitle : " " ,
     headerTintColor: Platform.OS === "android"? '#fff' : "rgba(53, 53, 53,1)" ,
     headerStyle:{
-      backgroundColor:Platform.OS === "android" ?  "rgba(53, 53, 53,0.95)" : "white"
+      backgroundColor:Platform.OS === "android" ?  Colors.background : "white"
   },
   } ,
 activeColor: '#f0edf6',
@@ -108,7 +109,8 @@ const FootNavigation = createStackNavigator({
     },
    OwnerSupport: OwnerSupportScreen,
    PlayerProfileScreen: PlayerProfileScreen,
-   OwnerGalery: OwnerGaleryScreen
+   OwnerGalery: OwnerGaleryScreen,
+   findBarber : findBarber
 },
 );
 

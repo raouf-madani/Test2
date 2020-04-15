@@ -24,9 +24,9 @@ const PlayerExpiredBookingsScreen = props =>{
             <BookingCard 
                         status = "error"
                         value = "expirée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "7"
                         month = "Mars"
@@ -37,9 +37,9 @@ const PlayerExpiredBookingsScreen = props =>{
                  <BookingCard 
                         status = "warning"
                         value = "annulée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "7"
                         month = "Mars"
@@ -50,9 +50,9 @@ const PlayerExpiredBookingsScreen = props =>{
                   <BookingCard 
                         status = "error"
                         value = "expirée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "7"
                         month = "Mars"
@@ -69,7 +69,7 @@ const PlayerExpiredBookingsScreen = props =>{
 
 const styles= StyleSheet.create({
 container : {
-  backgroundColor : "#323232",
+  backgroundColor : "white",
   flex : 1 
 },
 titleContainer : {

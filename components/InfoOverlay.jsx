@@ -11,12 +11,12 @@ const InfoOverlay = props =>{
   
   const data = [
           {id : 1 , 
-            title : require("../assets/images/footfive2.jpg")
+            title : require("../assets/images/barber2.jpg")
           },
           {id:2 ,
           title : require("../assets/images/imagefive.jpg")},
           {id:3 ,
-            title : require("../assets/images/footfive2.jpg")}
+            title : require("../assets/images/barber3.png")}
 
   ]
   const renderItem = ({item, index},parallaxProps) => {
@@ -49,7 +49,7 @@ const InfoOverlay = props =>{
 
         <ImageBackground 
         style = {styles.container}
-        source = {require("../assets/images/overlay.jpg")}
+        source = {require("../assets/images/cardback1.jpg")}
          >
          <View style = {styles.header}>
          
@@ -62,7 +62,7 @@ const InfoOverlay = props =>{
                   
                   }}>
                 
-                Foot Five Blida
+                Tahfifa Bab essebt
                 
                 </Text>
             </View>
@@ -110,19 +110,7 @@ const InfoOverlay = props =>{
                    <Text style = {styles.rightText}>Blida</Text> 
                 </Text>
 
-                <Text>
-                  <Text style = {styles.leftText} >Douche : 
-                  </Text>
-                   <Text style = {styles.rightText}> Oui</Text> 
-                </Text>
-                    
-                  <Text>
-                  <Text style = {styles.leftText} >Stades : 
-                  </Text>
-                   <Text style = {styles.rightText} > 5x5 , 7x7
-                   </Text> 
-                  </Text>
-
+             
                 </View>
               </View>
 

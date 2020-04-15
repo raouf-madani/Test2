@@ -37,7 +37,7 @@ const StadiumChoiceScreen = props =>{
        
        }}>
        <SearchBar
-        placeholder="Nom du sallon"
+        placeholder="Nom du coiffeur"
         containerStyle = {styles.searchBar}
 
         inputContainerStyle = {{
@@ -51,32 +51,28 @@ const StadiumChoiceScreen = props =>{
       </View> 
             <ScrollView>
                 <StadiumCard
-                  name = "Tahfifa Bab Essebt"
-                  adress = "Bab essabt      2.7km"
+                  name = "Walid Meziani"
+                  adress = "Bab essabt      1.2km"
                   onPress = {()=>props.navigation.navigate("StadiumBooking")}
                   infoPress = {overlayHandler}
-                  url = {require("../../../assets/images/imagefive.jpg")}
-                  mark = "4.5"
+                  url = {require("../../../assets/images/person1.jpg")}
                  />
                 
                 <StadiumCard
-                 name = "Tahfifa Bab Essebt"
-                 adress = "Bab essabt      2.7km"
-                 url = {require("../../../assets/images/barber2.jpg")}
-                 mark = "3.2"
+                 name = "Raouf Madani"
+                 adress = "Bab dzayer      2.7km"
+                 url = {require("../../../assets/images/person3.jpg")}
                    />
 
                 <StadiumCard 
-                  name = "Tahfifa Bab Essebt"
-                  adress = "Bab essabt      2.7km"
-                  url = {require("../../../assets/images/barber3.png")}
-                  mark = "4.9"
+                  name = "Snoussi Hareth"
+                  adress = "Bab Errahba      3.0km"
+                  url = {require("../../../assets/images/person2.jpg")}
                 />
                 <StadiumCard 
-                  name = "Tahfifa Bab Essebt"
-                  adress = "Bab essabt      2.7km"
-                  url = {require("../../../assets/images/barber4.jpg")}
-                  mark = "3.9"
+                  name = "Lucas Hood"
+                  adress = "Banshee      3.7km"
+                  url = {require("../../../assets/images/person4.jpg")}
                 />
                 
                 </ScrollView>
