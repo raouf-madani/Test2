@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground,Image, Dimensions} from 'react-native';
 import Card from "../components/Card";
+import Colors from "../constants/Colors";
 
 const screen = Dimensions.get('window');
 
@@ -17,33 +18,35 @@ const ProfileChoiceScreen = props =>
 
     return(
       <View style = {styles.container}>
-        <ImageBackground 
-        source={require('../assets/images/test.jpg')} style={styles.bigBackgroundImage} 
-        blurRadius={0}
-        fadeDuration = {0}
+        <View
+        style={styles.bigBackgroundImage} 
         >
 
           <View style = {styles.generalContainer}>
+        <View style = {styles.image} >  
+            <Image
+            style = {{width : "100%" , height : "100%"}} 
+            source ={require("../assets/logo/icon2.png")} 
+            resizeMode = "contain"
 
-                <View style = {styles.textContainer}> 
-                    <Text style = {titleStyle}>
-                    Choisissez votre camps
-                    </Text>
-                </View>
+            />
 
+
+          </View>
+  
                 <View style = {styles.cardsContainer}>
                 <Card 
-                url = {require("../assets/logo/soccer-field.png")}
-                role = "Propriétaire"
-                fonctionA = "Louez votre Stade"
+                url = {require("../assets/logo/barber-shop.png")}
+                role = "Coiffeur"
+                fonctionA = "Proposez vos services"
                 fonctionB = "Louez votre Stade"
                 onPress={() =>props.navigation.navigate('Owner')}
                     />
 
                 <Card 
-                url = {require("../assets/logo/football-player.png")}
-                role = "Joueur"
-                fonctionA = "Réservez un créneau"
+                url = {require("../assets/logo/hairstyle.png")}
+                role = "Client"
+                fonctionA = "Coiffez vous"
                 fonctionB = "Trouvez un adversaire"
                 onPress={() =>props.navigation.navigate('Player')}
                  />
@@ -51,7 +54,7 @@ const ProfileChoiceScreen = props =>
 
             </View>
 </View>
-         </ImageBackground>
+         </View>
 
       </View>
 
@@ -93,19 +96,19 @@ const styles= StyleSheet.create({
           fontSize : 22 , 
           fontFamily : "poppins-bold" , 
           letterSpacing : 2 , 
-          color :"white"
+          color :"black"
         },
         titleSmall : {
           fontSize : 18 , 
           fontFamily : "poppins-bold" , 
           letterSpacing : 1 , 
-          color :"white"
+          color :"black"
         },
         titleBig : {
           fontSize : 38, 
           fontFamily : "poppins-bold" , 
           letterSpacing : 2 , 
-          color :"white",
+          color :"black",
           marginBottom : 15
         },
 
@@ -115,10 +118,11 @@ const styles= StyleSheet.create({
             justifyContent : "center"
           },
           generalContainer : {
-                justifyContent : "center",
+                justifyContent : "flex-start",
                 alignItems : "center",
                  width : "100%",
-                 height : "100%" ,
+                 height : "100%",
+                 backgroundColor : Colors.grey
               
           },
           cardsContainer : {
@@ -127,8 +131,16 @@ const styles= StyleSheet.create({
             alignItems : "center",
             width : "100%",
             overflow : "hidden",
-           
+          
+          },
+          image : {
+        height : 150 ,
+        width : "100%",
+        
+        marginVertical : 50
+
           }
+          
           
 
 

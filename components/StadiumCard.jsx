@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View,Image,Button, ImageBackground,Dimensions} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
@@ -15,6 +15,15 @@ const StadiumCard = props =>{
     titleStyle = styles.titleBig;
     adressStyle = styles.adressBig;
   }
+
+  const [favState , setFav] = useState(false);
+  const [iconState ,setIcon] =useState("md-heart-empty");
+
+  const favHandler = ()=> {
+    setFav(old =>!old);
+    favState ? setIcon("md-heart") : setIcon("md-heart-empty");
+
+  };
   
 
     return(
@@ -25,7 +34,7 @@ const StadiumCard = props =>{
         >
 
         <View style = {styles.imageContainer}>
-            <Image source = {require("../assets/images/imagefive.jpg")} style = {styles.image}  />
+            <Image source = {props.url} style = {styles.image}  />
 
         </View>
          
@@ -42,12 +51,38 @@ const StadiumCard = props =>{
              </View>
       
             <View style = {styles.buttonContainer}>
-                    <Button 
-                    title = "Choisir" 
-                    color ={Colors.secondary}
-                    onPress = {props.onPress}
-                    
-                    />
+            <View style = {{flexDirection : "row" , alignItems : "center" , width : "33%"}}>
+            <Ionicons 
+                name = "md-star" 
+                size = {22}
+                color ="#da3a30"
+                
+                
+
+         />
+         <Text style = {{fontSize : 16,marginLeft : 5}}>
+         {props.mark}
+         </Text>
+         </View>
+
+
+         <View style = {{width : "33%",alignItems : "center"}}>
+          <Ionicons 
+                name = {iconState}
+                size = {22}
+                color ="#da3a30"
+                onPress = {()=>favHandler()}
+
+         />
+         </View>
+         <View style = {{width : "33%",alignItems : "center"}}>
+          <Ionicons 
+                name = "md-information-circle" 
+                size = {22}
+                color ="#da3a30"
+                onPress = {props.infoPress}
+
+         /></View>
 
             </View>
 
@@ -58,10 +93,10 @@ const StadiumCard = props =>{
         <View style = {styles.info}>
 
         <Ionicons 
-        name = "md-information-circle" 
+        name = "ios-arrow-forward" 
         size = {25}
-         color = {Colors.secondary} 
-         onPress = {props.infoPress}
+        color ="#da3a30"
+        onPress = {props.onPress}
 
          />
         </View>
@@ -78,16 +113,13 @@ const styles= StyleSheet.create({
  ///////////////////////////////////////////////////////////   
     cardContainer : {
         width : "100%" ,
-        height : 120,
+        height : 140,
         flexDirection : "row",
         justifyContent : "space-around",
         overflow : "hidden",
         alignSelf : "center",
-        marginBottom : 12,
-        borderRadius : 10,
-        borderWidth : 2,
-        
-    
+        marginBottom : 1,
+        borderBottomWidth : 2,
     },
     cardContainerBig : {
         width : "100%" ,
@@ -107,8 +139,8 @@ const styles= StyleSheet.create({
             height : "85%",      
             alignSelf : "center",
             borderRadius :22,
-            overflow : "hidden"
-
+            overflow : "hidden",
+            
     },
 
     image : {
@@ -121,7 +153,8 @@ const styles= StyleSheet.create({
             width : "55%",
             overflow : "hidden",
             justifyContent : "space-around",
-            alignItems : "center"
+            alignItems : "center",
+            
     },
    /////////////////////////////////////////////////////////
     title : {
@@ -144,7 +177,7 @@ const styles= StyleSheet.create({
 /////////////////////////////////////////////////////////
     adress : {
            alignSelf : "center",
-           fontSize : 12,
+           fontSize : 15,
            color : "black"
     },
     adressBig : {
@@ -156,10 +189,20 @@ const styles= StyleSheet.create({
     },
 /////////////////////////////////////////////////////////
     info : {
-        alignSelf : "flex-start"
+       
+        height : "100%",
+        width : "10%",
+        alignItems : "center",
+        justifyContent : "center",
+        borderLeftWidth : 0.2,
+        
     },
     buttonContainer : {
-            width : "50%",
+            width : "90%",
+            flexDirection : "row",
+            justifyContent : "space-between",
+            
+            
     }
    
 

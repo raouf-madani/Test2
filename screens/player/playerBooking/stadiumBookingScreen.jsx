@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View , Picker,ImageBackground, Dimensions , StatusBar, Platform,ActionSheetIOS} from 'react-native';
+import { StyleSheet, Text, View , Picker,ImageBackground, Dimensions , StatusBar, Platform,ActionSheetIOS, Alert} from 'react-native';
 import { RadioButton , Button} from 'react-native-paper';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import { ScrollView, FlatList, TouchableOpacity } from 'react-native-gesture-handler';
@@ -10,6 +10,8 @@ import {Ionicons} from "@expo/vector-icons";
 import RNPickerSelect from 'react-native-picker-select';
 
 const screen = Dimensions.get("window");
+
+
 
 // 10 next Days and OWN TIME PICKER
 let days = [];
@@ -58,37 +60,38 @@ let offers = [
       
       ,
       stadiumsNumber : 3 ,
-      stadiumsType : "5x5",
-      matchTimeType : "1h",
-      price : "3000"
+      stadiumsType : "Coupe de cheveux ",
+      matchTimeType : "non",
+      price : "500"
     
     }
   ,
   { id : "offer2",
   horraires :
-    {Sat : ["02:00","05:00"],
-     Sun : ["01:00","05:00"],
-     Mon:["03:00" , "04:00"]
-  }
+        {Sat : ["01:00","05:00"],
+         Sun : ["01:00","05:00"],
+         Mon : ["03:00" , "07:00"]
+      }
   ,
   stadiumsNumber : 3 ,
-  stadiumsType : "5x5",
-  matchTimeType : "1h30",
-  price : "3500"
+  stadiumsType : "Barbe ",
+  matchTimeType : "oui",
+  price : "100"
 
 },
- {
-    id : "offer3",
-    horraires :
-      {Sat : ["08:00","08:30"],
-       Sun : ["08:00","08:30"],
-       Mon:["05:00","08:30"]
-    }
-    ,
-    stadiumsNumber : 2 ,
-    stadiumsType : "7x7",
-    matchTimeType : "1h",
-    price : "4500"
+ 
+{
+  id : "offer4",
+  horraires :
+        {Sat : ["01:00","05:00"],
+         Sun : ["01:00","05:00"],
+         Mon : ["03:00" , "07:00"]
+      }
+  ,
+  stadiumsNumber : 2 ,
+  stadiumsType : "Lisseur",
+  matchTimeType : "oui",
+  price : "500"
 }
 
 ];
@@ -159,14 +162,17 @@ if(screen.width <= 360) {
   priceTextStyle = styles.priceTextSmall;
   tempsDuMatchStyle = styles.tempsDuMatchSmall ;
 }
-/////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+    
+    
+    const [servicesList , setServicesList] = useState ([]);
     const [selectedOffer , setSelectedOffer] = useState(false);
     const [priceState , setPrice] = useState(0);
     const [offerHoursState , setOfferHours] = useState([]);
 
-    //Match Type State 5x5 6x6 7x7 ....
+    //Match Type State Coupe de cheveux  6x6 Coupe de cheveux + Barbe ....
     const [matchTypeState , setMatchType] = useState(`${allStadiums[0]}`);
-    //Match Time State 1h 1h30 2h 
+    //Match Time State non oui 2h 
     const [matchTimeState , setMatchTime] = useState();
 
     //Selected Date State with the full date and the day 
@@ -188,6 +194,34 @@ if(screen.width <= 360) {
               id : 0 ,
               color : ""
     });
+    
+
+    
+    const servicesHandler = (service)=> {
+      
+     let arr = servicesList.map((item)=>item.nom);
+     
+
+     if(arr.indexOf(service.nom)<0) {
+      setServicesList(old =>[...old ,service]);
+
+     }else {
+      Alert.alert(
+        'Alerte',
+        'Ce service a déjà été ajouté',
+        [
+          {text: 'OK'},
+        ],
+        {cancelable: false},
+      );
+     }
+
+     
+      
+
+    };
+
+
 
     //Selected Match type handler (Set the match type)
     const matchTypeHandler = (itemValue, itemIndex) => {
@@ -205,6 +239,7 @@ if(screen.width <= 360) {
 
     //Selected Date (set the selected date)
     const selectedDateHandler = (v)=> {
+      
         setSelectedDate(v);
     };
 
@@ -212,7 +247,7 @@ if(screen.width <= 360) {
     const buttonsHandler = (e)=> {
       setButtonState({
         id : e ,
-       color : Colors.secondary });
+       color : "#da3a30" });
      
     };
  //////////////////////////////////////////////////////////
@@ -226,13 +261,19 @@ if(screen.width <= 360) {
     //GET ONLY THE GAME TIMES THAT MATCHES WITH THE SELECTED TYPE AND TIME
     
       useEffect(()=> {
-    
+  ////////////////////////////////////////////////////////////
+      let listOfServices = servicesList.map(item=>item.prix);
+      let finalPrice = 0 ;
+
+      listOfServices.forEach(item=>finalPrice =finalPrice+item);
+
+//////////////////////////////////////////////////////////      
       let daysHours = [];
       const customOffers = offers.find(element => element.stadiumsType === `${matchTypeState}` && element.matchTimeType ===`${matchTimeState}`);
       
       if(customOffers && selectedDateState) {
        daysHours = customOffers.horraires[selectedDateState.day]; 
-       setPrice(customOffers.price);
+       setPrice(finalPrice);
        
       } else{
         const timeChange = offers.find(element => element.stadiumsType === `${matchTypeState}`);
@@ -277,7 +318,7 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
     setSelectedOffer(true);
 } 
 
- },[matchTypeState,matchTimeState,selectedDateState,selectedHour,buttonState]);
+ },[matchTypeState,matchTimeState,selectedDateState,selectedHour,buttonState,servicesList]);
 
  const openSheet = ()=> {
   
@@ -295,20 +336,21 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
   );
 
  };
+ 
     return(
       
-      <ImageBackground source = {require ("../../../assets/images/android.jpg")} 
+      <ImageBackground source = {require ("../../../assets/images/cardback1.jpg")} 
       style ={styles.container} 
       blurRadius = {0.5}>
    
      <ScrollView style = {styles.componentsContainer}>
       
                   <View style = {styles.stadiumCard}>
-                  <Ionicons name="md-football" size={iconSize} color={Colors.secondary} />
+                  <Ionicons name="ios-cut" size={iconSize} color="white" />
                       <Text style ={nameTextStyle}>
-                      FootFive Blida
+                      Tahfifa Bab Essabt
                       </Text>
-                      <Ionicons name="md-football" size={iconSize} color={Colors.secondary} />
+                      <Ionicons name="ios-cut" size={iconSize} color="white" />
                   </View>
 
                           {/* Match Type Part : Start */}
@@ -316,12 +358,14 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
 
                     <View style = {styles.typeTextContainer}>
                           <Text style = {typeStyle}>
-                          Type du Match :  
+                          Type du Service :  
                           </Text>
                     </View>
 
-                     { Platform.OS === "android" ? <Picker 
-                      style = {styles.picker}
+                     { Platform.OS === "android" ?
+                     
+                     <View  style = {styles.picker}>
+                     <Picker 
                       onValueChange = {matchTypeHandler}
                       selectedValue = {matchTypeState}
                       
@@ -332,14 +376,15 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
                       key = {index} 
                       label={item} 
                       value={item} 
-                     
+                    
                       />)}
 
-                      </Picker> :
+                      </Picker></View>  :
                       <TouchableOpacity style = {styles.touchableIos} onPress = {openSheet}>
                         <Text style = {{
                           fontSize : 18,
-                          fontFamily : "poppins-bold"
+                          fontFamily : "poppins-bold",
+                         
                           }
                           }>
                         {matchTypeState}
@@ -347,61 +392,67 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
 
                       </TouchableOpacity>
                     }
-
+                    <View style = {{}}>
+                <Button 
+                style = {priceButtonStyle} 
+                mode = "contained" 
+                color = "#da3a30"
+                onPress = {()=>{
+                  const customOffers = offers.find(element => element.stadiumsType === `${matchTypeState}` && element.matchTimeType ===`${matchTimeState}`);
+                  let daysHours = [];
+                  daysHours = customOffers.horraires[selectedDateState.day]; 
+   
+                 let nam = {nom : matchTypeState , prix : parseInt (customOffers.price)};
+                  servicesHandler(nam);
+                  }}
+                >
+               <Text style = {styles.bookButtonText}>+</Text>
+                </Button>
+              </View>
                   </View>
                     {/* Match Type Part : End */}
 
                       {/* Match Time Part : Start */}
-                  <View style = {matchTimeStyle}>
-                 
-                 <View style = {styles.timeTextContainer}>
+                 <ScrollView style={matchTimeStyle}>
+
+                 <View style = {{flexDirection : "row" , alignItems : "center" }} >
+                       <Text style = {{borderWidth : 1 , width : "65%" ,fontSize : 16 ,padding : 10}} >Service</Text>
+                       
+                     
+                       <Text style = {{borderWidth : 1 ,width : "35%",fontSize : 16,padding : 10}} >Prix</Text>
+                       
+                       </View> 
+                  {
+                    servicesList.map((item , index)=>
+                    
+                    <View style = {{flexDirection :"row"}} key = {index}>
+                   
+                       <View 
+                       style = {{borderWidth : 1 ,width : "65%",backgroundColor : "rgba(52,52,52,0.3)"}} >
+                       <Text style = {{fontSize : 14,padding : 10}}  >{item.nom}</Text>
+                       
+                       </View> 
+
+                       <View style = {{borderWidth : 1 ,width : "35%" , backgroundColor : "rgba(52,52,52,0.3)"}}>
+                       <Text  style = {{fontSize : 14,padding : 10}}  >{item.prix} DA</Text>
+                       </View> 
+                  </View>
+
+                              )
+                  }
+                    
                   
-                   <Text style = {tempsDuMatchStyle}>Temps du Match : </Text>
-                 
-                 </View> 
 
-                  <View style = {styles.radioButtons}>
-                      <RadioButton.Group
-                        value = {matchTimeState}
-                        onValueChange = {matchTimeHandler}
-                      >
-
-                {/* RadioButtons Elements : Start */}
-                      {timesFilteredToShow.map(
-                        (element,index)=>
-                        {
-                           return (
-                             <View 
-                             style = {{
-                               marginHorizontal : 5 ,
-                              
-                               }} 
-                             key ={index}>
-
-                          <Text style = {timeTextStyle}>
-                          {element}
-                           </Text>
-                          <RadioButton.Android
-                          value={element} 
-                           color = {Colors.secondary}
-                          
-                          />
-                        </View>
-                        )
-
-                          })}
-                        {/* RadioButtons Elements : End */}
-                      </RadioButton.Group>
-                  </View>
-                  </View>
+                 </ScrollView>
                   {/* Match Time Part : End */}
 
-
+                {
+                  servicesList.length > 0 &&       
                    <View  style = {styles.customCalendar}>
                         <View style = {styles.dateText}>
                         
                         <Text style = {tempsDuMatchStyle}>
-                        Date du match :</Text>
+                        Date du RDV :</Text>
                         
                   </View>  
                     <RadioButton.Group
@@ -420,10 +471,13 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
                            style ={calendarDayStyle} >
                               {itemData.item.day}
                             </Text>
-                            <View style = {{height:30,justifyContent : "center"}}>
+                            <View 
+                            style = {{
+                              height:30,
+                              justifyContent : "center"}}>
                               <RadioButton.Android  
                               value={itemData.item} 
-                              color = {Colors.secondary}
+                              color = "#da3a30"
                               
                               /></View>
 
@@ -441,13 +495,13 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
                             {/* RadioButtons Elements : End */}
                       </RadioButton.Group>
 
-                    </View>
+                    </View>}
 
                <View style = {{marginTop : 20}}>
-            {hoursState.length === 0 ?
+            {(hoursState.length === 0 && servicesList.length >0) ?
             <View>
             <Text style = {styles.noTimeText}>
-            Aucun créneau disponible 
+            Aucun RDV disponible 
             </Text>
             </View> 
             
@@ -467,7 +521,7 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
               <Button
                   contentStyle={styles.timeButton}
                   labelStyle = {{color : "black" }}
-                  style={{borderColor:Colors.secondary , 
+                  style={{borderColor:"#da3a30" , 
                   borderWidth : 0.5 , 
                   backgroundColor : buttonState.id ===itemData.item.time ? buttonState.color : "white",
                   borderRadius : 20,
@@ -497,7 +551,7 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
                </View>
 
 
-        {selectedOffer && 
+        {(selectedOffer && priceState >0) &&
         <View style= {styles.priceContainer}>
 
               <View style = {styles.priceTextContainer}>
@@ -510,12 +564,13 @@ if(selectedHour && offerHours.indexOf(buttonState.id) !== -1 ) {
               <View style = {styles.priceButtonContainer}>
                 <Button 
                 style = {priceButtonStyle} 
-                mode = "contained" color = {Colors.secondary}>
+                mode = "contained" color = "#da3a30">
                <Text style = {styles.bookButtonText}>Reserver</Text>
                 </Button>
               </View>
               
-              </View>} 
+              </View> 
+              } 
             
               </ScrollView>
       
@@ -549,13 +604,13 @@ const styles= StyleSheet.create({
       componentsContainer : {
           height : "97%",
           width : "100%",
-          backgroundColor :  "rgba(255, 255, 255, 0.85)",
+          backgroundColor :  "rgba(255, 255, 255, 0.02)",
           marginBottom : screen.height < 500 ? 0 : 10,
           marginTop :screen.height < 500 ? 0 :  5,
       },
 //////////////////////////////////////////////////////////     
       stadiumCard : {
-          backgroundColor : "rgba(255, 255, 255, 0.85)",
+          backgroundColor : "#da3a30",
           width : "70%",
           height : "8%",
           alignSelf : "center",
@@ -569,7 +624,8 @@ const styles= StyleSheet.create({
 ///////////////////////////////////////////////////////////      
       nameText :{
           fontSize : 20,
-          fontFamily : "poppins-bold"
+          fontFamily : "poppins-bold",
+          color : "white"
       },
       nameTextBig : {
         fontSize : 26,
@@ -585,7 +641,9 @@ const styles= StyleSheet.create({
           height : 80 , 
           marginTop : 10,
           flexDirection : "row",
-          alignItems : "center"
+          alignItems : "center",
+          
+          overflow : "hidden"
       },
       matchTypeBig : {
         width : "100%",
@@ -603,10 +661,11 @@ const styles= StyleSheet.create({
 
 ///////////////////////////////////////////////////////////       
       picker : {
-        backgroundColor : "white",
-        width : 50,
-        marginLeft : 25,
-        
+        backgroundColor : "rgba(52,52,52,0.1)",
+        flex :1,
+        marginHorizontal : 5,
+        flexShrink : 1,
+        borderWidth : 1
       },
    
      typeTextContainer : {   
@@ -664,18 +723,18 @@ tempsDuMatchSmall : {
      matchTime : {
         width : "100%",
         height : 120,
-        justifyContent : "center",
+       paddingHorizontal : 5
      },
      matchTimeBig : {
       width : "100%",
         height : 120,
-        justifyContent : "center",
+        paddingHorizontal : 5,
       marginVertical : 15
    },
    matchTimeSmall : {
     width : "100%",
       height : 100,
-      justifyContent : "center",
+      paddingHorizontal : 5
       
     
  },

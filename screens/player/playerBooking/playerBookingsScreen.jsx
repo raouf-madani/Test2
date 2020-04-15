@@ -14,52 +14,52 @@ const PlayerBookingsScreen = props =>{
                     <BookingCard 
                         status = "primary"
                         value = "Confirmée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "8"
                         month = "Mars"
                         year = "2020"
                     />
                     
-                    <BookingCard 
-                        status = "primary"
-                        value = "Confirmée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
-                        hours = "11:00 - 12:00"
-                        day = "8"
-                        month = "Mars"
-                        year = "2020"
-
-                    />
                     
                     <BookingCard 
                         status = "primary"
                         value = "Confirmée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "8"
                         month = "Mars"
                         year = "2020"
-
                     />
+                    
+                   
+                    <BookingCard 
+                        status = "primary"
+                        value = "Confirmée"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
+                        hours = "11:00 - 12:00"
+                        day = "8"
+                        month = "Mars"
+                        year = "2020"
+                    />
+                    
                     
                     <BookingCard 
                         status = "primary"
                         value = "Confirmée"
-                        stade = "FootFive"
-                        time = "1h"
-                        stadium = "5x5"
+                        stade = "Tahfifa Babessebt"
+                        time = "Coupe + barbe + Lisseur"
+                        stadium = ""
                         hours = "11:00 - 12:00"
                         day = "8"
                         month = "Mars"
                         year = "2020"
-
                     />
                     
 
@@ -80,7 +80,7 @@ PlayerBookingsScreen.navigationOptions = ()=> {
 
 const styles= StyleSheet.create({
   container : {
-    backgroundColor : "#323232",
+    backgroundColor :Colors.grey,
     flex : 1 
   },
   titleContainer : {

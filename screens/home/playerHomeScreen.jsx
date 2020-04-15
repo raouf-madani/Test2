@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground , Image ,Dimensions} from 'react-native';
 import SmallCard  from '../../components/SmallCard';
-
+import Colors from "../../constants/Colors";
 
 const screen = Dimensions.get("window");
 const PlayerHomeScreen = props =>{
@@ -15,53 +15,63 @@ let welcomeTextStyle = styles.welcomeText;
 
   if (screen.height > 800) {
     welcomeTextStyle = styles.welcomeTextBig;
-    
   }
 
     return(
       <View style ={styles.container}>
-        <ImageBackground source = {require("../../assets/images/test.jpg")}  style = {styles.backgroudnImage}>
+        <View   style = {styles.backgroudnImage}>
          
          <View style = {styles.textContainer}>
-            <Text style = {welcomeTextStyle}>BIENVENUE</Text>
-
+     
+           <Image 
+           source = {require("../../assets/logo/Bienvenue.png")
+           }  
+             resizeMode = "contain"
+             style = {{height : "100%" , width : "100%"}}
+           />
+          
+         
          </View>
 
           <View style = {styles.rowsContainer}>
               <View style = {styles.rowOne}>
+
+              
+              <SmallCard
+                    image ={require("../../assets/logo/user3.png")} 
+                    screen = "Profile"
+                    onPress = {() =>props.navigation.navigate('PlayerProfileScreen')}
+                   />
                   <SmallCard 
-                  image ={require("../../assets/logo/user.png")} 
-                  screen = "Profile"
-                  onPress = {() =>props.navigation.navigate('PlayerProfileScreen')}
+                  image ={require("../../assets/logo/home.png")} 
+                  screen = "Service à domicile"
+                  onPress = {() =>props.navigation.navigate('findBarber')}
                   />
                   
-                  <SmallCard
-                  image ={require("../../assets/logo/book.png")} 
-                  screen = "Réserver"
-                  onPress = {() =>props.navigation.navigate('Stadiums')}
-                   />
+                 
 
               </View> 
 
               <View style = {styles.rowTwo}>
                   
                   <SmallCard
-                    image ={require("../../assets/logo/calendar.png")} 
+                    image ={require("../../assets/logo/calendar2.png")} 
                     screen = "Réservations"
                     onPress = {() =>props.navigation.navigate('PlayerBookings')}
                      />
 
-                  <SmallCard
-                    image ={require("../../assets/logo/football2.png")} 
-                    screen = "Something"
-                    onPress = {() =>props.navigation.navigate('Signup')}
+                     <SmallCard
+                  image ={require("../../assets/logo/book.png")} 
+                  screen = "Trouver un salon"
+                  onPress = {() =>props.navigation.navigate('Stadiums')}
                    />
 
               </View>
        
+       
             </View>
 
-        </ImageBackground>
+        </View>
 
 
       </View>
@@ -96,7 +106,8 @@ const styles= StyleSheet.create({
   },
   backgroudnImage : {
     flex : 1 ,
-    justifyContent : "center"
+    justifyContent : "center",
+    backgroundColor : Colors.grey
   },
   image : {
         width : "100%",
@@ -114,41 +125,44 @@ const styles= StyleSheet.create({
   },
   rowOne : {
       flexDirection : "row",
-      width : "80%",
-      height : "30%",
-    
+      width : "95%",
+      height : "32%",
+
       
   },
   rowTwo : {
     flexDirection : "row",
-    width : "80%",
-    height : "30%",
+    width : "95%",
+    height : "32%",
     marginBottom : 30
 },
 
     textContainer : {
-            alignSelf : "center",
+           width : "80%",
+           overflow :"hidden",
+           height : 120,
+           alignSelf : "center"
 
     },
 /////////////////////////////////////////////////////////////
     welcomeText : {
         fontFamily : "poppins-bold",
         fontSize : 45,
-        color : "white",
+        color : "black",
         letterSpacing : 5,
 
     },
     welcomeTextSmall : {
       fontFamily : "poppins-bold",
       fontSize : 28,
-      color : "white",
+      color : "black",
       letterSpacing : 4,
 
     },
     welcomeTextBig : {
       fontFamily : "poppins-bold",
       fontSize : 55,
-      color : "white",
+      color : "black",
       letterSpacing : 5,
     }
 /////////////////////////////////////////////////////////////

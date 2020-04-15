@@ -54,7 +54,7 @@ if (screen.height > 800 || screen.width >500 ) {
 
                   style={{borderColor:'white' , 
                   borderWidth : 0.5 , 
-                  backgroundColor :  "rgba(198, 34, 37, 0.6)",
+                  backgroundColor :  "#da3a30",
                   borderRadius : 25
                   
                   }}
@@ -74,8 +74,8 @@ if (screen.height > 800 || screen.width >500 ) {
 const styles= StyleSheet.create({
     container :{
         borderWidth : 2 ,
-        borderColor : "white",
-        backgroundColor :  "rgba(52, 52, 52, 0.6)",
+        borderColor : "black",
+        backgroundColor :  "white",
         width : screen.width *0.45,
         justifyContent : "space-around"
     },
@@ -121,37 +121,37 @@ const styles= StyleSheet.create({
 ///////////////////////////////////////////////////////////////
     role : {
         fontFamily : "poppins-bold",
-        color : "white",
+        color : "black",
         fontSize : 20,
         letterSpacing : 1
     },
     roleSmall : {
         fontFamily : "poppins-bold",
-        color : "white",
+        color : "black",
         fontSize : 15,
         letterSpacing : 1
 
     },
     roleBig : {
         fontFamily : "poppins-bold",
-        color : "white",
+        color : "black",
         fontSize : 30,
         letterSpacing : 2,
     },
 ///////////////////////////////////////////////////////////////
     fonctions:{
         fontFamily : "poppins",
-        color : "white",
+        color : "black",
         fontSize : 14
     }, 
     fonctionsSmall : {
         fontFamily : "poppins",
-        color : "white",
+        color : "black",
         fontSize : 11
     },
     fonctionsBig: {
         fontFamily : "poppins",
-        color : "white",
+        color : "black",
         fontSize : 22
     },
 ///////////////////////////////////////////////////////////////
@@ -165,12 +165,12 @@ const styles= StyleSheet.create({
     buttonLabel : {
         fontSize:16,
         fontFamily:'poppins', 
-        color:'white' 
+        color:'black' 
     },
     buttonLabelSmall : {
         fontSize:13,
         fontFamily:'poppins', 
-        color:'white'   
+        color:'black'   
 
     }
 

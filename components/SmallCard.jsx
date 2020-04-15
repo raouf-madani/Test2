@@ -27,6 +27,7 @@ if(screen.height > 800 || screen.width >500) {
                         {props.screen}
                         
                         </Text>
+                        
 
                 </View>
 
@@ -47,16 +48,17 @@ const styles= StyleSheet.create({
         card : {
             width : "80%",
             height : "100%",
-            marginHorizontal : 20,
+           
             borderWidth : 2 ,
-            borderColor : "white",
-            backgroundColor :  "rgba(52, 52, 52, 0.3)",
+            borderColor : "black",
+            backgroundColor :  "white",
             justifyContent : "space-around",
-            alignItems : "center"
+            alignItems : "center",
+            alignSelf : "center"
         },
         imageContainer : {
-            width : "35%",
-            height : "35%" ,
+            width : "45%",
+            height : "45%" ,
             
         },
 
@@ -70,11 +72,11 @@ const styles= StyleSheet.create({
  /////////////////////////////////////////////////////
         text : {
                 fontFamily : "poppins",
-                color : "white"
+                color : "black"
         },
         textBig : {
                 fontFamily : "poppins",
-                color : "white",
+                color : "black",
                 fontSize : 26
 
         }

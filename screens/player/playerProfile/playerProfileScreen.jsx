@@ -70,7 +70,7 @@ let card2Style = styles.card2;
 
     return(
     <View style={styles.container}>
-     <ImageBackground source = {require("../../../assets/images/android.jpg")}  
+     <ImageBackground source = {require("../../../assets/images/cardback1.jpg")}  
      style={styles.backgroudnImage}
     
      >
@@ -110,7 +110,7 @@ let card2Style = styles.card2;
                             placeholder='Tapez votre nom et prénom'
                             value={fullName}
                             onChangeText={prevText=>setFullName(prevText)}
-                            theme={{colors: {primary:'#456383',text:'#9399a1',placeholder:'#9399a1'}}}
+                            theme={{colors: {primary:'#456383',text:'black',placeholder:'black'}}}
                             style={textInputStyle}
                             underlineColor='#9399a1'
                         />
@@ -122,7 +122,7 @@ let card2Style = styles.card2;
                             placeholder='Tapez votre numéro de téléphone'
                             value={phone}
                             onChangeText={prevText=>setPhone(prevText)}
-                            theme={{colors: {primary:'#456383',text:'#9399a1',placeholder:'#9399a1'}}}
+                            theme={{colors: {primary:'#456383',text:'black',placeholder:'black'}}}
                             style={textInputStyle}
                             underlineColor='#9399a1'
                         />
@@ -134,7 +134,7 @@ let card2Style = styles.card2;
                             placeholder='Tapez votre adresse email'
                             value={email}
                             onChangeText={prevText=>setEmail(prevText)}
-                            theme={{colors: {primary:'#456383',text:'#9399a1',placeholder:'#9399a1'}}}
+                            theme={{colors: {primary:'#456383',text:'black',placeholder:'black'}}}
                             style={textInputStyle}
                             underlineColor='#9399a1'
                         />
@@ -146,7 +146,7 @@ let card2Style = styles.card2;
                             placeholder='Tapez votre propre adresse'
                             value={address}
                             onChangeText={prevText=>setAddress(prevText)}
-                            theme={{colors: {primary:'#456383',text:'#9399a1',placeholder:'#9399a1'}}}
+                            theme={{colors: {primary:'#456383',text:'black',placeholder:'black'}}}
                             style={textInputStyle}
                             underlineColor='#9399a1'
                         />
@@ -168,18 +168,18 @@ PlayerProfileScreen.navigationOptions= navData => {
        title : "Mon Profile" , 
        headerTitleStyle:{
            fontFamily:'poppins',
-           color:Platform.OS === 'android' ? 'white' : Colors.background
+           color:Platform.OS === 'android' ? "black" : Colors.background
          },
          headerStyle:{
-             backgroundColor:Platform.OS === 'android' ? Colors.background : 'white'
+             backgroundColor:Platform.OS === 'android' ? "white" : 'white'
          },
          headerBackTitle:" ",
-          headerTintColor:Platform.OS === 'android' ? 'white' :Colors.background ,
+          headerTintColor:Platform.OS === 'android' ? 'black' :Colors.background ,
          headerRight : ()=>  
                (<HeaderButtons HeaderButtonComponent = {HeaderButton}> 
                  <Item title = "save" 
                    iconName = {Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'}
-                   color={Platform.OS === 'android' ? 'white' : Colors.background}
+                   color={Platform.OS === 'android' ? 'black' : Colors.background}
                  />
                </HeaderButtons>
                
@@ -207,7 +207,7 @@ const styles= StyleSheet.create({
    },
 ////////////////////////////////////////////////////////////////
    card:{
-    backgroundColor:'#263341',
+    backgroundColor:'white',
     shadowColor: 'black',
     shadowOpacity: 0.86,
     shadowOffset: {width:0, height:2},
@@ -217,13 +217,14 @@ const styles= StyleSheet.create({
     borderRadius : 65,
     height : 130 ,
     width : 130,
-    borderWidth : 3,
-    borderColor : Colors.grey,
+    borderWidth : 2,
+    borderColor : 'black',
     marginBottom : 9,
-    overflow : "hidden"
+    overflow : "hidden",
+  
    },
    cardBig : {
-    backgroundColor:'#263341',
+    backgroundColor:'white',
     shadowColor: 'black',
     shadowOpacity: 0.86,
     shadowOffset: {width:0, height:2},
@@ -242,7 +243,7 @@ const styles= StyleSheet.create({
 ////////////////////////////////////////////////////////////////
    pickedImageText:{
     fontFamily:'poppins',
-    color:'white',
+    color:'black',
     alignSelf:'center',
     fontSize : 13 
    },
@@ -291,7 +292,7 @@ const styles= StyleSheet.create({
     height:40,
     width:40,
     borderRadius:50/2,
-    backgroundColor:'#456383',
+    backgroundColor:'#E5726C',
     justifyContent:'center',
     alignItems:'center'
    },
@@ -300,7 +301,7 @@ const styles= StyleSheet.create({
     height:80,
     width:80,
     borderRadius:80/2,
-    backgroundColor:'#456383',
+    backgroundColor:'#E5726C',
     justifyContent:'center',
     alignItems:'center'
    },
@@ -313,15 +314,18 @@ const styles= StyleSheet.create({
    card2:{
     height:350,
     width:'90%',
-    backgroundColor:'rgba(38, 51, 65,0.9)',
+    backgroundColor:'rgba(255, 255, 255,0.7)',
     borderRadius:10,
     paddingHorizontal:20,
-    paddingVertical:20
+    paddingVertical:20,
+    borderColor : "black",
+    borderWidth :1,
+    
    },
    card2Big:{
     height:400,
     width:'90%',
-    backgroundColor:'rgba(38, 51, 65,0.9)',
+    backgroundColor:'rgba(255, 255, 255,0.7)',
     borderRadius:10,
     paddingHorizontal:20,
     paddingVertical:20
